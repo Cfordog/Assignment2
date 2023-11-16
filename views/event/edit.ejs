@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Home
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+<body>
+
+    <div class="flex-container">
+        <div class="flex-item">Navbar</div>
+        <button class="flex-item"><a href="/index.html">Home</a></button>
+        <button class="flex-item"><a href="/event">Event</a></button>
+        <button class="flex-item"><a href="/becomeVolunteer.html">Become volunteer</a></button>
+        <div class="flex-item" style="flex-grow: 6"> </div>
+    </div>
+
+    <p>
+
+    </p>
+
+    <div class="flex-container">
+        <button class="flex-item"><a href="/index.html">Home</a></button>
+
+        <button class="flex-item"><a href="/event">/Event</a></button>
+
+        <button class="flex-item">/Edit</button>
+    </div>
+
+    <img class="img-fluid img-thumbnail" style="object-fit:cover" src=<%=event.Image %> />
+
+    <form action="/event/edit/<%= event._id%>" method="POST">
+        <div class="row mb-3">
+            <label for="EventTitle" class="col-sm-2 col-form-label">Event Title</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="EventTitle" id="EventTitle" required
+                    value="<%= event.EventTitle%>">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Organizer" class="col-sm-2 col-form-label">Organizer</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Organizer" id="Organizer" required
+                    value="<%= event.Organizer%>">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="DateTime" class="col-sm-2 col-form-label">DateTime</label>
+            <div class="col-sm-10">
+                <input type="datetime" class="form-control" name="DateTime" id="DateTime" required
+                    value="<%= event.DateTime%>">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Location" class="col-sm-2 col-form-label">Location</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Location" id="Location" required
+                    value="<%= event.Location%>">
+            </div>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" name="Highlight" type="checkbox" id="gridCheck1">
+            <label class="form-check-label" for="gridCheck1">
+                Highlight
+            </label>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Description" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Description" id="text" value="<%= event.Description%>">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Quota" class="col-sm-2 col-form-label">Quota</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" name="Quota" id="Quota" required value="<%= event.Quota%>">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="Image" class="col-sm-2 col-form-label">Image</label>
+            <div class="col-sm-10">
+                <input type="url" class="form-control" name="Image" id="Image" required value="<%= event.Image%>">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" href="/events">Save</button>
+
+
+    </form>
+
+    <!-- a form with a delete buttton to delete this document -->
+
+    <form method="POST" action="/event/delete/<%= event._id %>">
+        <!-- :id is the dynamic variable, and we should not use this right now -->
+        <!-- cannot contain space -->
+        <button type="submit">Delete</button>
+    </form>
+
+    <!-- <a class="btn btn-primary" href="/event/delete/<%= event._id %>">Delete</a> -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // alert("<%= event.Highlight %>")
+            document.querySelector("#gridCheck1").checked = "<%= event.Highlight %>" == "true";
+
+        });
+    </script>
+
+</body>
+
+</html>
